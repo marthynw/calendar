@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-start">
+    <div class="col-md-2 col-sm-3">
+        <div class="d-flex justify-content-center">
+        <button type="button" class="btn" (click)="decrease()">
+            <fa-icon [icon]="faAngleDown" size="lg"></fa-icon>
+        </button>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6">
+        <div class="d-flex justify-content-center">
+            <h4>{{gotDate | date: 'MMMM d'}}</h4>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-3">
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn" (click)="increase()">
+                <fa-icon [icon]="faAngleUp" size="lg"></fa-icon>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-center mt-3">
+    <h1>Timelogger</h1>
+</div>
+<div class="d-flex justify-content-center mt-5">
+    <form #loginForm="ngForm" 
+          (ngSubmit)="onSubmit(email.value, password.value)">
+        <div class="form-group">
+            <input type="email" ngModel #email="ngModel" name="email" required
+                   class="form-control" placeholder="Email"
+                   [ngModelOptions]="{updateOn: 'blur'}">
+            <span class="text-danger" *ngIf="email.touched && !email.valid">
+                Please, enter an email!
+            </span>
+        </div>
+        <div class="form-group mt-3">
+            <input type="password" ngModel #password="ngModel" name="password"
+                   required class="form-control" placeholder="Password">
+        </div>
+        <span class="text-danger" *ngIf="errorMessage$ | async as errorMessage">
+            {{errorMessage}}
+        </span>
+        <div class="d-flex justify-content-center mt-4">
+            <button type="submit" class="btn btn-primary mr-3" 
+                    [disabled]="!loginForm.valid">
+                Login
+            </button>
+            <span class="align-text-top"><h5>Or</h5></span>
+            <button class="btn btn-primary ml-3" type="button" 
+                    (click)="tryRegister(email.value, password.value)">
+                Register
+            </button>
+        </div>
+    </form>
+</div>

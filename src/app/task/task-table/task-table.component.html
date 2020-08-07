@@ -1,0 +1,124 @@
+<div class="mt-2 mb-2">
+    <app-task-pagination [gotDate]="sentDate"
+        (changedDateToEmit)="changeDay($event)">
+    </app-task-pagination>
+</div>
+<form [formGroup]="updatingForm">
+<table class="table table-striped table-responsive-md">
+    <thead class="thead-dark">
+        <tr>
+            <th>task</th>
+            <th>start time</th>
+            <th>end time</th>
+            <th>length of task (minutes)</th>
+            <th>edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of taskArray">
+            <td>
+                <span *ngIf="!item.isEditable">
+                    {{item.task}}
+                </span>
+                <input type="text" formControlName="task"
+                       *ngIf="item.isEditable">
+            </td>
+            <td>
+                <span *ngIf="!item.isEditable">
+                    {{item.startTime.hour | number:'2.0-0'}}:{{item.startTime.minute | number:'2.0-0'}}
+                </span>
+                <ngb-timepicker formControlName="startTime" 
+                                [spinners]="false" [size]="'small'"
+                                *ngIf="item.isEditable" required>
+                </ngb-timepicker>
+            </td>
+            <td>
+                <span *ngIf="!item.isEditable">
+                    {{item.endTime.hour | number:'2.0-0'}}:{{item.endTime.minute | number:'2.0-0'}}
+                </span>
+                <ngb-timepicker formControlName="endTime" 
+                                [spinners]="false" [size]="'small'"
+                                *ngIf="item.isEditable" required>
+                </ngb-timepicker>
+            </td>
+            <td>
+                <span *ngIf="!item.isEditable">
+                    {{item.taskMins}}
+                </span>
+                <input type="number" formControlName="taskMins" 
+                       *ngIf="item.isEditable" disabled>
+            </td>
+            <td>
+                <div class="btn-group" role="group" *ngIf="!(counter > 0)">
+                    <button class="btn btn-primary" type="button"
+                            (click)="triggerEdit(item)">
+                        <fa-icon [icon]="faEdit"></fa-icon>
+                    </button>
+                    <button class="btn btn-danger" type="button"
+                            (click)="onDelete(item.id)">
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                    </button>
+                </div>
+                <div class="btn-group" role="group" *ngIf="item.isEditable">
+                    <button class="btn btn-success" type="button"
+                            (click)="onEdit(item.id, item)">
+                        <fa-icon [icon]="faSave"></fa-icon>
+                    </button>
+                    <button class="btn btn-danger" type="button"
+                            (click)="cancel(item)">
+                        <fa-icon [icon]="faTimes"></fa-icon>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</form>
+<ng-container *ngIf="!newRow">
+<div class="d-flex justify-content-start">
+    <button class="btn btn-primary addTask" type="button" 
+            (click)="addNewTask()">
+        Add new task
+    </button>
+</div>
+</ng-container>
+<form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()" *ngIf="newRow" class="addTaskForm">
+<table class="table table-borderless table-responsive-sm">
+    <tbody>
+        <tr>
+            <td>
+                <input type="text" formControlName="task"
+                    required>
+            </td>
+            <td> 
+                <ngb-timepicker formControlName="startTime" 
+                                [spinners]="false" [size]="'small'"
+                                required>
+                </ngb-timepicker>
+            </td>
+            <td>
+                <ngb-timepicker formControlName="endTime" 
+                                [spinners]="false" [size]="'small'"
+                                required>
+                </ngb-timepicker>
+            </td>
+            <td>
+                <input type="number"
+                    formControlName="taskMins">
+            </td>
+            <td>
+                <div class="btn-group" role="group">
+                    <button type="submit" [disabled]="!addTaskForm.valid" 
+                            class="btn btn-success">
+                        Submit
+                    </button>
+                    <button class="btn btn-danger" type="button"
+                            (click)="addNewTask()">
+                        <fa-icon [icon]="faTimes"></fa-icon>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</form>

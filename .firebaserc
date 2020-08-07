@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "timelogger-4444d": {
+      "hosting": {
+        "timelogger": [
+          "timelogger-4444d"
+        ]
+      }
+    }
+  }
+}

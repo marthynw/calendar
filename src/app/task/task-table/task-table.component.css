@@ -1,0 +1,23 @@
+input {
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: black;
+}
+
+input:focus {
+    box-shadow: none;
+    border-color: blue;
+    background-color: transparent;
+}
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+td {
+    width: 20%;
+}
+@media (max-width: 800px) {
+    th, td {
+        padding: .3em !important;
+    }
+}

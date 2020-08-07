@@ -1,0 +1,19 @@
+<nav class="navbar navbar-dark bg-dark" *ngIf="!router.isActive('/home', true)">
+    <div *ngIf="router.isActive('/task', true)">
+        <a class="btn btn-primary btn-block" routerLink="/calendar" 
+            role="button">
+            <fa-icon [icon]="faCalendar" size="lg"></fa-icon>
+        </a> 
+    </div>
+    <div *ngIf="router.isActive('/calendar', true)">
+        <a class="btn btn-primary btn-block" routerLink="/task" role="button">
+            <fa-icon [icon]="faTasks" size="lg"></fa-icon>
+        </a>
+    </div>
+    <div>
+        <button class="btn btn-primary" type="button"
+            (click)="fireAuth.logout()">
+            <fa-icon [icon]="faSignOutAlt" size="lg"></fa-icon>
+        </button>
+    </div>
+</nav>

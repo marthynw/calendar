@@ -1,0 +1,17 @@
+p {
+    font-weight: 500;
+    font-size: medium;
+}
+input {
+    outline: 0;
+    border-width: 0 0 2px;
+    border-color: black;
+}
+input:focus {
+    box-shadow: none;
+    border-color: blue;
+    background-color: transparent;
+}
+input::placeholder {
+    opacity: 0.5;
+}

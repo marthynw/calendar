@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "timelogger",
+      "public": "dist/timelogger",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

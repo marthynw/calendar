@@ -1,0 +1,107 @@
+<div class="mt-2 mb-2">
+    <app-pagination (dateToEmit)="onDate($event)">
+    </app-pagination>
+</div>
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" *ngFor="let day of days">
+                {{day}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td *ngFor="let daysOfFirstWeek of firstWeek"
+                [ngClass]="{'blue' : checkToday(daysOfFirstWeek)}">
+                <div *ngIf="daysOfFirstWeek">
+                    <a (click)="sendDateToService(daysOfFirstWeek)"
+                        routerLink="/task">
+                        {{daysOfFirstWeek | date:'d'}}
+                    </a>
+                    <ng-container *ngFor="let task of tasksArray">
+                        <div *ngIf="task.day ===
+                            daysOfFirstWeek.toLocaleDateString('en-US')">
+                            {{task.task}}
+                        </div>
+                    </ng-container>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td *ngFor="let daysOfSecondWeek of secondWeek"
+                [ngClass]="{'blue' : checkToday(daysOfSecondWeek)}">
+                <a (click)="sendDateToService(daysOfSecondWeek)"
+                    routerLink="/task">
+                    {{daysOfSecondWeek | date:'d'}}
+                </a>
+                <ng-container *ngFor="let task of tasksArray">
+                    <div *ngIf="task.day ===
+                        daysOfSecondWeek.toLocaleDateString('en-US')">
+                        {{task.task}}
+                    </div>
+                </ng-container>
+            </td>
+        </tr>
+        <tr>
+            <td *ngFor="let daysOfThirdWeek of thirdWeek"
+                [ngClass]="{'blue' : checkToday(daysOfThirdWeek)}">
+                <a (click)="sendDateToService(daysOfThirdWeek)"
+                    routerLink="/task">
+                    {{daysOfThirdWeek | date: 'd'}}
+                </a>
+                <ng-container *ngFor="let task of tasksArray">
+                    <div *ngIf="task.day ===
+                        daysOfThirdWeek.toLocaleDateString('en-US')">
+                        {{task.task}}
+                    </div>
+                </ng-container>
+            </td>
+        </tr>
+        <tr>
+            <td *ngFor="let daysOfFourthWeek of fourthWeek"
+                [ngClass]="{'blue' : checkToday(daysOfFourthWeek)}">
+                <a (click)="sendDateToService(daysOfFourthWeek)"
+                    routerLink="/task">
+                    {{daysOfFourthWeek | date:'d'}}
+                </a>
+                <ng-container *ngFor="let task of tasksArray">
+                    <div *ngIf="task.day ===
+                        daysOfFourthWeek.toLocaleDateString('en-US')">
+                        {{task.task}}
+                    </div>
+                </ng-container>
+            </td>
+        </tr>
+        <tr *ngIf="fifthWeek.length > 0">
+            <td *ngFor="let daysOfFifthWeek of fifthWeek"
+                [ngClass]="{'blue' : checkToday(daysOfFifthWeek)}">
+                <a (click)="sendDateToService(daysOfFifthWeek)"
+                    routerLink="/task">
+                    {{daysOfFifthWeek | date:'d'}}
+                </a>
+                <ng-container *ngFor="let task of tasksArray">
+                    <div *ngIf="daysOfFifthWeek && task.day ===
+                        daysOfFifthWeek.toLocaleDateString('en-US')">
+                        {{task.task}}
+                    </div>
+                </ng-container>
+            </td>
+        </tr>
+        <tr *ngIf="sixthWeek.length > 0">
+            <td *ngFor="let daysOfSixthWeek of sixthWeek"
+                [ngClass]="{'blue' : checkToday(daysOfSixthWeek)}">
+                <a (click)="sendDateToService(daysOfSixthWeek)"
+                    routerLink="/task">
+                    {{daysOfSixthWeek | date:'d'}}
+                </a>
+                <ng-container *ngFor="let task of tasksArray">
+                    <div *ngIf="daysOfSixthWeek && task.day ===
+                        daysOfSixthWeek.toLocaleDateString('en-US')">
+                        {{task.task}}
+                    </div>
+                </ng-container>
+            </td>
+        </tr>
+    </tbody>
+</table>
